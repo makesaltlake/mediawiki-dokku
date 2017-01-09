@@ -1,0 +1,22 @@
+#!/bin/bash
+
+. vars
+
+if [ -z "$WIKI_ADMIN_USERNAME" ]; then
+  read -p "Enter a username for your wiki's admin user: " WIKI_ADMIN_USERNAME
+fi
+if [ -z "$WIKI_ADMIN_PASSWORD" ]; then
+  read -s -p "Enter a password for this user: " WIKI_ADMIN_PASSWORD
+fi
+
+php maintenance/install.php \
+  --conf /tmp/LocalSettings.php \
+  --dbname "$WIKI_DB_NAME" \
+  --dbtype postgres \
+  --dbserver "$WIKI_DB_HOST" \
+  --dbport "$WIKI_DB_PORT" \
+  --dbuser "$WIKI_DB_USER" \
+  --dbpass "$WIKI_DB_PASSWORD" \
+  --pass "$WIKI_ADMIN_PASSWORD" \
+  "$WIKI_NAME" \
+  "$WIKI_ADMIN_USERNAME"
