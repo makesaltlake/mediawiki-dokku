@@ -18,6 +18,7 @@ ADD supervisord.conf /app/
 RUN rm /etc/nginx/conf.d/default.conf
 RUN usermod -a -G www-data nginx
 RUN mkdir -p /run/php
+RUN sed -r -i -e 's/upload_max_filesize = 2M/upload_max_filesize = 8M/; s/post_max_size = 8M/post_max_size = 32M/' /etc/php/7.0/fpm/php.ini
 
 EXPOSE 8080
 
