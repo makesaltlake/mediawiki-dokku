@@ -4,7 +4,7 @@ FROM nginx:1.13
 RUN sed -r -i -e 's/(\.debian\.org.* main)/\1 contrib non-free/g' /etc/apt/sources.list
 # The postgresql-client-9.6 postinstall script fails if /usr/share/man and friends are missing, so recreate them
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7
-RUN apt-get update && apt-get -y install php7.0-fpm php7.0-pgsql imagemagick postgresql-client supervisor nano lynx unzip
+RUN apt-get update && apt-get -y install php7.0-fpm php7.0-pgsql php7.0-xml php7.0-mbstring imagemagick postgresql-client supervisor nano lynx unzip
 
 ADD https://releases.wikimedia.org/mediawiki/1.30/mediawiki-1.30.0.tar.gz /var/www/mediawiki.tar.gz
 # COPY mediawiki-1.30.0.tar.gz /var/www/mediawiki.tar.gz
