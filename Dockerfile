@@ -17,6 +17,7 @@ ADD nginx.conf /etc/nginx/conf.d/mediawiki.conf
 ADD supervisord.conf /app/
 RUN rm /etc/nginx/conf.d/default.conf
 RUN usermod -a -G www-data nginx
+RUN mkdir -p /run/php
 
 EXPOSE 8080
 
