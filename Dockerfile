@@ -11,7 +11,7 @@ ADD https://releases.wikimedia.org/mediawiki/1.30/mediawiki-1.30.0.tar.gz /var/w
 RUN cd /var/www && tar -xzf mediawiki.tar.gz && mv mediawiki-* mediawiki && rm /var/www/mediawiki.tar.gz
 
 ADD https://github.com/kulttuuri/slack_mediawiki/archive/1.10.zip /app/slack_mediawiki.zip
-RUN unzip /app/slack_mediawiki.zip -d /app/ && mv /app/slack_mediawiki-*/SlackNotifications /var/www/mediawiki/extensions/ && rm -rf /app/slack_mediawiki.zip /app/slack_mediawiki-*
+RUN unzip /app/slack_mediawiki.zip -d /app/ && mv /app/SlackNotifications-*/SlackNotifications /var/www/mediawiki/extensions/ && rm -rf /app/slack_mediawiki.zip /app/SlackNotifications-*
 
 ADD nginx.conf /etc/nginx/conf.d/mediawiki.conf
 ADD supervisord.conf /app/
