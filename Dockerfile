@@ -13,6 +13,9 @@ RUN cd /var/www && tar -xzf mediawiki.tar.gz && mv mediawiki-* mediawiki && rm /
 ADD https://github.com/kulttuuri/slack_mediawiki/archive/1.10.zip /app/slack_mediawiki.zip
 RUN unzip /app/slack_mediawiki.zip -d /app/ && mv /app/SlackNotifications-*/SlackNotifications /var/www/mediawiki/extensions/ && rm -rf /app/slack_mediawiki.zip /app/SlackNotifications-*
 
+ADD https://extdist.wmflabs.org/dist/extensions/ConfirmAccount-REL1_30-4fe25f7.tar.gz /app/ConfirmAccount.tar.gz
+RUN tar -xzf /app/ConfirmAccount.tar.gz -C /var/www/mediawiki/extensions && rm -rf /app/ConfirmAccount.tar.gz
+
 ADD nginx.conf /etc/nginx/conf.d/mediawiki.conf
 ADD supervisord.conf /app/
 RUN rm /etc/nginx/conf.d/default.conf
